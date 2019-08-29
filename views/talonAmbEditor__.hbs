@@ -1,0 +1,1171 @@
+
+
+<div class="container-fluid" data-ng-controller="TalonAmbController as talonAmbCtr">
+    
+    <div class="modal modal-container-xl" tabindex="-1" role="dialog" id="doctor">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                    <div class="col-6">
+                        Врач: <span class="text-primary">{[{talonAmbCtr.talonEditorModel.objDoctor.docName || 'Нет'}]}</span>
+                    </div>
+                    <div class="col-5">
+                        Специальность: <span class="text-primary">{[{talonAmbCtr.getSpecializationName() || 'Нет'}]}</span>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+              </div>
+              <div class="modal-body">
+                <div class="row pb-2">
+                    <div class="col-8 pl-4">
+                        <label>Фильтр по списку врачей</label>
+                        <div class="input-group">                   
+                            <input type="text"
+                                   name="patientName"
+                                   placeholder="Код" 
+                                   class="form-control col-3"
+                                   data-ng-model="talonAmbCtr.filters.doctorSelect.id">
+                            <input type="text"
+                                   name="patientName"
+                                   placeholder="СНИЛС" 
+                                   class="form-control col-3"
+                                   data-ng-model="talonAmbCtr.filters.doctorSelect.snils">
+                            <input type="text"
+                                   name="patientName"
+                                   placeholder="ФИО Врача" 
+                                   class="form-control col-6"
+                                   data-ng-model="talonAmbCtr.filters.doctorSelect.name">
+                        </div>
+                    </div>
+                    <div class="col-4 pr-4">
+                        <label>Выбрать специальность</label>
+                        <div class="input-group">           
+                            <input type="text"
+                                   name="patientName"
+                                   placeholder="Код" 
+                                   class="form-control col-3 text-center"
+                                   data-ng-model="talonAmbCtr.talonEditorModel.objDoctor.specName">
+                            <select class="form-control"
+                                    data-ng-model="talonAmbCtr.talonEditorModel.objDoctor.specName">
+                                <option data-ng-value="V021.id" 
+                                        data-ng-repeat="V021 in talonAmbCtr.nsi.V021.list">
+                                           {[{V021.id}]} - {[{V021.name}]}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="container border my-4"
+                     style="height: 300px; overflow-y: auto;">
+                    <div class="row py-2">
+                        <div class="col-12">
+                            <div class="row"
+                                 data-ng-repeat="doctor in talonAmbCtr.nsi.doctors.list | filterListField : 'id' : talonAmbCtr.filters.doctorSelect.id
+                                                                                        | filterListField : 'name' : talonAmbCtr.filters.doctorSelect.name
+                                                                                        | filterListField : 'snils' : talonAmbCtr.filters.doctorSelect.snils">
+                                <div class="col-2 pl-4 py-2 border-bottom">{[{ doctor.id }]}</div>
+                                <div class="col-2 pl-4 py-2 border-bottom">{[{ doctor.snils}]}</div>
+                                <div class="col-8 pl-4 py-2 border-bottom">
+                                    <a href="#!"
+                                       data-ng-click="talonAmbCtr.toTalonEditorSubModel(doctor)">{[{ doctor.name }]}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="checkEditor_Modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <strong>Счета</strong>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs" id="checkEditor_Tabs">
+                        <li class="nav-item">
+                            <a data-toggle="tab" 
+                               class="nav-link active"
+                               href="#checkEditor_Tab_List">
+                                Список
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a data-toggle="tab" 
+                               class="nav-link"
+                               href="#checkEditor_Tab_Editor">
+                                Редактор
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="checkEditor_TabsContent">
+                        <div class="tab-pane fade show active" id="checkEditor_Tab_List">
+                            
+                            
+
+
+                        </div>
+                        <div class="tab-pane fade" id="checkEditor_Tab_Editor">
+                            <div class="row pt-4">
+                                <div class="col-6">
+                                    <label>Отчетный год</label>
+                                    <input type="text" 
+                                           name="zl_list.schet.year"
+                                           class="form-control"
+                                           data-ng-model="">
+                                </div>
+                                <div class="col-6">
+                                    <label>Отчетный месяц</label>
+                                    <input type="text" 
+                                           name="zl_list.schet.year"
+                                           class="form-control"
+                                           data-ng-model="">
+                                </div>
+                            </div>
+                            <div class="row pt-2">
+                                <div class="col-6">
+                                    <label>Номер счета</label>
+                                    <input type="text" 
+                                           name="zl_list.schet.nschet"
+                                           class="form-control"
+                                           data-ng-model="">
+                                </div>
+                                <div class="col-6">
+                                    <label>Дата выставления счета</label>
+                                    <input type="text" 
+                                           name="zl_list.schet.dschet"
+                                           class="form-control"
+                                           data-ng-model="">
+                                </div>
+                            </div>
+                            <div class="row pt-2">
+                                
+                                <div class="col-12">
+                                    <label>Сумма счета, выставленная МО на оплату</label>
+                                    <input type="text" 
+                                           name="zl_list.schet.summav"
+                                           class="form-control"
+                                           data-ng-model="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-4 text-right">
+                                    <button type="button"
+                                            class="btn btn-outline-success btn-block">Очистить</button>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <button type="button"
+                                            class="btn btn-outline-danger btn-block">Удалить</button>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <button type="button"
+                                            class="btn btn-primary btn-block">Сохранить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="row pt-4">
+      <div class="col-8">
+            <div class="row pb-4">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Врач</strong>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="row">
+                                <div class="col-12 pb-4">
+                                    <div data-ng-if="talonAmbCtr.talonEditorModel.objDoctor.docName != ''  && talonAmbCtr.getSpecializationName()">
+                                        <div>
+                                            <span class="text-primary">{[{talonAmbCtr.talonEditorModel.objDoctor.docName}]}</span>
+                                        </div>
+                                        <div>
+                                            <small><span class="text-secondary">{[{talonAmbCtr.getSpecializationName()}]}</span></small>
+                                        </div>
+                                    </div>
+                                    <div data-ng-if="talonAmbCtr.talonEditorModel.objDoctor.docName == ''  || !talonAmbCtr.getSpecializationName()">
+                                        <div>
+                                            <span class="text-primary">Врач не выбран</span>
+                                        </div>
+                                        <div>
+                                            <small><span class="text-secondary">Специальность</span></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary"
+                                            data-toggle="modal"
+                                            data-target="#doctor">
+                                        Выбрать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Счет
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="row pb-4">
+                                <div class="col-12">
+                                    <button type="button"
+                                            data-target="#checkEditor_Modal"
+                                            data-toggle="modal"
+                                            class="btn btn-primary">
+                                        Выбрать
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            <div class="row py-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <strong>Талон пациента, получающего медицинскую помощь в амбулаторных условиях</strong>
+                </div>
+                <div class="card-body">
+                        <div class="row pb-4">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#talonBaseAmb" role="tab">Талон</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#talonBase200" role="tab">Список талонов</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    
+                        <div class="tab-content" id="myTabContent">
+                            <!-- Поля амбулаторного талона (базовый) -->
+                            <div class="tab-pane fade show active" id="talonBaseAmb">
+                                    <form name="talonAmb_Form">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <label>Дата</label>
+                                                <input type="text" 
+                                                       class="form-control"
+                                                       placeholder="ДД.ММ.ГГГГ"
+                                                       data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.date_2"
+                                                       required>
+                                            </div>
+                                            <div class="col-3 pt-4">
+                                                <button type="button"
+                                                        class="btn btn-outline-primary mt-2 btn-block"
+                                                        data-ng-click="talonAmbCtr.setDate(0)">
+                                                    Сегодня
+                                                </button>
+                                            </div>
+                                            <div class="col-3 pt-4">
+                                                <button type="button"
+                                                        class="btn btn-outline-primary mt-2 btn-block"
+                                                        data-ng-click="talonAmbCtr.setDate(1)">
+                                                    Вчера
+                                                </button>
+                                            </div>
+                                            <div class="col-3 pt-4">
+                                                <button type="button"
+                                                        class="btn btn-outline-primary mt-2 btn-block"
+                                                        data-ng-click="talonAmbCtr.setDate(2)">
+                                                    Позавчера
+                                                </button>
+                                            </div>
+
+                                           
+                                            <!-- <label class="col-1 col-form-label text-right">
+                                                <small>Время:</small>
+                                            </label>
+                                            <div class="col-2">
+                                                <input type="text" 
+                                                       class="form-control"
+                                                       placeholder="14:00"
+                                                       data-ng-pattern="/^\d{2}:\d{2}$/"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.time">
+                                            </div>
+                                            <label class="col-1 col-form-label text-right">
+                                                <small>Каб:</small>
+                                            </label>
+                                            <div class="col-2">
+                                                <input type="text" 
+                                                       class="form-control"
+                                                       placeholder="23"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.cabinet">
+                                            </div>
+                                            <label class="col-1 col-form-label text-right">
+                                                <small>Уч:</small>
+                                            </label>
+                                            <div class="col-2">
+                                                <input type="text" 
+                                                       class="form-control"
+                                                       placeholder="15"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.uchastok">
+                                            </div> -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 pt-2 pb-2">
+                                                <div><hr></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row pb-3">
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">1</span>&nbsp;&nbsp;Фамилия пациента</label>
+                                                <input type="text" 
+                                                       name="fam"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.fam">
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Имя пациента</label>
+                                                <input type="text" 
+                                                       name="im"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.im">
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Отчество пациента</label>
+                                                <input type="text" 
+                                                       name="ot"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.ot">
+                                            </div>
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">2</span>&nbsp;&nbsp;Идент. пациента</label>
+                                                <div class="input-group">
+                                                    <input type="text" 
+                                                           name="idbars"
+                                                           class="form-control"
+                                                           data-ng-model="talonAmbCtr.talonEditorModel.objPatient.idbars">
+                                                    <div class="input-group-append">
+                                                        <button type="button" 
+                                                                class="btn btn-primary">
+                                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">3</span>&nbsp;&nbsp;СНИЛС</label>
+                                                <input type="text" 
+                                                       name="snils"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.snils">
+                                            </div>
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">4</span>&nbsp;&nbsp;Пол</label>
+                                                <input type="text" 
+                                                       name="w"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.w">
+                                            </div>
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">5</span>&nbsp;&nbsp;Дата рождения</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.dr">
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Возраст</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.vzr">
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-5">
+                                               <!--  <label><span class="badge badge-dark">6</span>&nbsp;&nbsp;Тип документа уд. личность</label>
+                                                <select class="form-control"
+                                                        data-ng-model="talonAmbCtr.talonEditorModel.objPatient.doctype">
+                                                    <option value="">Паспорт гражданина РФ</option>
+                                                </select> -->
+                                                <label><span class="badge badge-dark">6</span>&nbsp;&nbsp;Тип документа уд. личность</label>
+                                                <div class="input-group">
+                                                    
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.talonEditorModel.objPatient.doctype">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objPatient.doctype">
+
+                                                            <option data-ng-value="F011.id" 
+                                                                    data-ng-repeat="F011 in talonAmbCtr.nsi.F011.list">
+                                                                       {[{F011.id}]} - {[{F011.name}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Серия</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.docser">
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Номер</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.docnum">
+                                            </div>
+                                            <div class="col-2 pt-4">
+                                                <div class="pt-2"></div>
+                                                <button class="btn btn-primary btn-block">
+                                                    Поиск
+                                                </button>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 pt-2 pb-2">
+                                                <div><hr></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="form-group form-check m-0 pt-2">
+                                                    <input type="checkbox" 
+                                                           id="checkbox-det"
+                                                           class="form-check-input"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.det">
+                                                    <label class="form-check-label" for="checkbox-det">Признак детского профиля</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="form-group form-check m-0 pt-2">
+                                                    <input type="checkbox" 
+                                                           id="checkbox-novor"
+                                                           class="form-check-input"
+                                                           data-ng-change="talonAmbCtr.checkNovor()"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.novor">
+                                                    <label class="form-check-label" for="checkbox-novor">Признак новорожденного</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-disabled="!talonAmbCtr.filters.talonEditorModel.novor"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.novor">
+                                            </div>
+                                            <div class="col-2 text-center pt-2">
+                                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 pt-2 pb-2">
+                                                <div><hr></div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label><span class="badge badge-dark">7</span>&nbsp;&nbsp;Адрес</label>
+                                            </div>
+                                            <div class="col-12 pb-3">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">регистрации:</span>
+                                                    </div>
+                                                    <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.addressUr">
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">проживания:</span>
+                                                    </div>
+                                                    <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.addressReal">
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">8</span>&nbsp;&nbsp;Местность</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.mestoLech">
+                                            </div>
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">9</span>&nbsp;&nbsp;Социальный статус</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.socialStatus">
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Место работы, должность</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.workDescription">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label><span class="badge badge-dark">10</span>&nbsp;&nbsp;Инвалидность</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.talonEditorModel.objPatient.inv">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objPatient.inv">
+                                                            <option data-ng-value="inv.id" 
+                                                                    data-ng-repeat="inv in talonAmbCtr.nsi.inv.list">
+                                                                        {[{inv.name}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label><span class="badge badge-dark">11</span>&nbsp;&nbsp;Страховая компания</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.smo_nam">
+                                            </div>
+                                        </div>
+                                         <div class="row pt-3">
+                                            <div class="col-6">
+                                                <label>Тип страхового документа (СД)</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.talonEditorModel.objPatient.vpolis">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objPatient.vpolis">
+                                                            <option data-ng-value="F008.id" 
+                                                                    data-ng-repeat="F008 in talonAmbCtr.nsi.F008.list">
+                                                                        {[{F008.name}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Серия СД</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.spolis">
+                                            </div>
+                                            <div class="col-4">
+                                                <label>Номер СД</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objPatient.npolis">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 pt-2 pb-2">
+                                                <div><hr></div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-6">
+                                                <label><span class="badge badge-dark">12</span>&nbsp;&nbsp;Врач</label>
+                                                <input type="text" 
+                                                       name="vpolis"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.objDoctor.docName">
+                                            </div>
+                                            <div class="col-6">
+                                                <label>Специальность</label>
+                                                <div class="input-group">
+                                                    <select class="form-control"
+                                                            data-ng-model="talonAmbCtr.talonEditorModel.objDoctor.specName" disabled>
+                                                        <option data-ng-value="V021.id" 
+                                                                data-ng-repeat="V021 in talonAmbCtr.nsi.V021.list">
+                                                                   {[{V021.id}]} - {[{V021.name}]}
+                                                        </option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <button type="button"
+                                                                class="btn btn-primary"
+                                                                data-toggle="modal" 
+                                                                data-target="#doctor">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-6">
+                                                <label><span class="badge badge-dark">14</span>&nbsp;&nbsp;Виды оплаты</label>
+                                                <select class="form-control"
+                                                        data-ng-model="talonAmbCtr.talonEditorModel.vidOp">
+                                                    <option value="ОМС">ОМС</option>
+                                                    <option value="ДМС">ДМС</option>
+                                                    <option value="Бюджет">Бюджет</option>
+                                                    <option value="Платно">Платно</option>
+                                                </select>       
+                                            </div>
+                                            <div class="col-6">
+                                                <label><span class="badge badge-dark">15</span>&nbsp;&nbsp;Место обслуживания</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.placement">
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label><span class="badge badge-dark">16</span>&nbsp;&nbsp;Результат обращения</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-1 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.rmp_id">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Поиск названия"
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.rslt">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.rslt">
+                                                            <option data-ng-value="V009.id" 
+                                                                    data-ng-repeat="V009 in talonAmbCtr.nsi.V009.list
+                                                                                    | filter : talonAmbCtr.filters.talonEditorModel.rslt
+                                                                                    | filterListField : 'rmp_id' : talonAmbCtr.filters.talonEditorModel.rmp_id">
+                                                                        {[{V009.rmp_id}]} - {[{V009.rmpname}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label><span class="badge badge-dark">17</span>&nbsp;&nbsp;Цель обращения по заболеваниям</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-1 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.p_cel_id">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Поиск названия"
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.p_cel_name">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.p_cel">
+                                                            <option data-ng-value="V025.id" 
+                                                                    data-ng-repeat="V025 in talonAmbCtr.nsi.V025.list
+                                                                                    | filterListField : 'id' : talonAmbCtr.filters.talonEditorModel.p_cel_id
+                                                                                    | filterListField : 'name' : talonAmbCtr.filters.talonEditorModel.p_cel_name">
+                                                                        {[{V025.id}]} - {[{V025.name}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label><span class="badge badge-dark">18</span>&nbsp;&nbsp;Исход заболевания</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-1 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.ishod_id">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Поиск названия"
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.ishod_name">
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.ishod">
+                                                            <option data-ng-value="V012.id" 
+                                                                    data-ng-repeat="V012 in talonAmbCtr.nsi.V012.list
+                                                                                    | filterListField : 'id' : talonAmbCtr.filters.talonEditorModel.ishod_id
+                                                                                    | filterListField : 'name' : talonAmbCtr.filters.talonEditorModel.ishod_name">
+                                                                        {[{V012.id}]} - {[{V012.name}]}
+                                                            </option>
+                                                        </select>
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row pb-3">
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">19</span>&nbsp;&nbsp;Способ оплаты</label>
+                                                <select class="form-control"
+                                                        data-ng-model="talonAmbCtr.talonEditorModel.oplata">
+                                                    <option value="0">Не принято решение об оплате</option>
+                                                    <option value="1">Полная</option>
+                                                    <option value="2">Полный отказ</option>
+                                                    <option value="3">Частичный отказ</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
+                                                <label><span class="badge badge-dark">20</span>&nbsp;&nbsp;Обращение</label>
+                                                <div class="form-group form-check m-0 pt-2">
+                                                    <input type="checkbox" 
+                                                           id="checkbox-obr-zsl"
+                                                           class="form-check-input"
+                                                           data-ng-change="talonAmbCtr.clearZsl()"
+                                                           data-ng-model="talonAmbCtr.talonEditorModel.obr">
+                                                    <label class="form-check-label" for="checkbox-obr-zsl">Законченный случай</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Кол-во посещений</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       data-ng-disabled="!talonAmbCtr.talonEditorModel.obr"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.posNumber"
+                                                       data-ng-required="talonAmbCtr.talonEditorModel.obr">
+                                            </div>
+                                            <div class="col-3">
+                                                <label>Дата первого посещения</label>
+                                                <input type="text" 
+                                                       name="patientName"
+                                                       class="form-control"
+                                                       placeholder="ДД.ММ.ГГГГ" 
+                                                       data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                       data-ng-disabled="!talonAmbCtr.talonEditorModel.obr"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.posDateFirst"
+                                                       data-ng-required="talonAmbCtr.talonEditorModel.obr">
+                                            </div>
+                                        </div>
+                                        <!-- Законченный случай -->
+                                        <div class="row pb-4 rounded"
+                                             style="background: #f8f8f8; border: 1px solid #ccc;"
+                                             data-ng-if="talonAmbCtr.talonEditorModel.obr">
+                                            <div class="col-12">
+                                                <div class="row pt-2">
+                                                    <div class="col-3">
+                                                        <label>Условия оказания МП</label>
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.usl_ok">
+                                                            <option value="{[{V006.id}]}" 
+                                                                    data-ng-repeat="V006 in talonAmbCtr.nsi.V006.list">{[{V006.name}]}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Вид  МП</label>
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.vidpom">
+                                                            <option value="{[{V008.id}]}" 
+                                                                    data-ng-repeat="V008 in talonAmbCtr.nsi.V008.list">{[{V008.name}]}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Форма оказания МП</label>
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.for_pom">
+                                                            <option value="{[{V014.id}]}" 
+                                                                    data-ng-repeat="V014 in talonAmbCtr.nsi.V014.list">{[{V014.name}]}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Код МО, направившей на лечение</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.npr_mo">
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col-3">
+                                                        <label>Дата начала лечения</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               placeholder="ДД.ММ.ГГГГ"
+                                                               data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.date_z_1"
+                                                               required>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Дата окончания лечения</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               placeholder="ДД.ММ.ГГГГ"
+                                                               data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.date_z_2"
+                                                               required>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Продолжительность госп-ции</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.kd_z"
+                                                               title="Продолжительность госпитализации (койко-дни/пациенто-дни)" 
+                                                               required>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Вес при рождении</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.vnov_m"
+                                                               title="Продолжительность госпитализации (койко-дни/пациенто-дни)" 
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col-6">
+                                                        <label>
+                                                            <span class="badge badge-secondary">
+                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                                                &nbsp;17
+                                                            </span>
+                                                            &nbsp;&nbsp;Цель обращения по заболеваниям</label>
+                                                        <div class="input-group">
+                                                            <select class="form-control"
+                                                                    data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.rslt">
+                                                                <option data-ng-value="V025.id" 
+                                                                        data-ng-repeat="V025 in talonAmbCtr.nsi.V025.list
+                                                                                        | filterListField : 'id' : talonAmbCtr.talonEditorModel.p_cel">
+                                                                            {[{V025.id}]} - {[{V025.name}]}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label>
+                                                            <span class="badge badge-secondary">
+                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                                                &nbsp;18
+                                                            </span>
+                                                            &nbsp;&nbsp;Исход заболевания</label>
+                                                        <div class="input-group">
+                                                            <select class="form-control"
+                                                                    data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.ishod">
+                                                                <option data-ng-value="V012.id" 
+                                                                        data-ng-repeat="V012 in talonAmbCtr.nsi.V012.list
+                                                                                        | filterListField : 'id' : talonAmbCtr.talonEditorModel.ishod">
+                                                                            {[{V012.id}]} - {[{V012.name}]}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row pt-2">
+                                                    <div class="col-3">
+                                                        <label>Особый случай</label>
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.os_sluch">
+                                                            <option value="">Нет</option>
+                                                            <option value="1">1 - Медицинская помощь оказана новорожденному ребенку до государственной регистрации рождения при многоплодных родах</option>
+                                                            <option value="2">2 - В документе, удостоверяющем личность пациента/родителя (представителя) пациента, отсутствует отчество</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Признак внутбол перевода</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               data-ng-pattern="/^1?$/"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.vb_p"
+                                                               title="Указывается '1' только при оплате случая по КСГ с внутрибольничным переводом.">
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>Сумма, выставленная к оплате</label>
+                                                        <input type="text" 
+                                                               class="form-control"
+                                                               data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.sumv">
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <label>
+                                                            <span class="badge badge-secondary">
+                                                                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                                                &nbsp;19
+                                                            </span>
+                                                            &nbsp;&nbsp;Способ оплаты
+                                                        </label>
+                                                        <select class="form-control"
+                                                                data-ng-model="talonAmbCtr.talonEditorModel.objZakSluchai.oplata">
+                                                            <option value="0">Не принято решение об оплате</option>
+                                                            <option value="1">Полная</option>
+                                                            <option value="2">Полный отказ</option>
+                                                            <option value="3">Частичный отказ</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Законченный случай -->
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label><span class="badge badge-dark">21</span>&nbsp;&nbsp;Диагноз МКБ-10</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.mkb_id">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Поиск названия"
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.mkb_name">
+                                                    <select class="form-control"
+                                                            data-ng-model="talonAmbCtr.talonEditorModel.mkb">
+                                                        <option data-ng-value="mkb.id" 
+                                                                data-ng-repeat="mkb in talonAmbCtr.nsi.mkb.list
+                                                                                | filterListField : 'id' : talonAmbCtr.filters.talonEditorModel.mkb_id
+                                                                                | filterListField : 'name' : talonAmbCtr.filters.talonEditorModel.mkb_name">
+                                                                    {[{mkb.id}]} - {[{mkb.name}]}
+                                                        </option>
+                                                        </select>
+                                                    <div class="input-group-append">
+                                                        <button type="button"
+                                                                class="btn btn-primary">
+                                                            <i class="fa fa-fw fa-search" aria-hidden="true"></i>        
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row pb-3">
+                                            <div class="col-12">
+                                                <label>Список тарифообразующих услуг</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Код" 
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.listUsluga_id">
+                                                    <input type="text"
+                                                           name="patientName"
+                                                           placeholder="Поиск названия"
+                                                           class="form-control col-2 text-center"
+                                                           data-ng-model="talonAmbCtr.filters.talonEditorModel.listUsluga_name">
+                                                    <select class="form-control"
+                                                            data-ng-model="talonAmbCtr.selectedServiceTarif">
+                                                        <option data-ng-value="servicesTarif" 
+                                                                data-ng-repeat="servicesTarif in talonAmbCtr.nsi.servicesTarif.list
+                                                                                | filterListField : 'usl' : talonAmbCtr.filters.talonEditorModel.listUsluga_id
+                                                                                | filterServiceTarif : talonAmbCtr.lpu">
+                                                                    {[{servicesTarif.usl}]} - {[{servicesTarif.usl_ok}]} - {[{servicesTarif[talonAmbCtr.lpu]}]}
+                                                        </option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <button type="button"
+                                                                class="btn btn-primary"
+                                                                data-ng-click="talonAmbCtr.pushServiseTarif()">
+                                                            <i class="fa fa-fw fa-plus" aria-hidden="true"></i>        
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="row py-2 pl-4"
+                                             data-ng-repeat="usluga in talonAmbCtr.talonEditorModel.listUsluga">
+                                            <div class="col-2 pb-2 pl-2 border-bottom">{[{usluga.id}]}</div>
+                                            <div class="col-8 pb-2 border-bottom">{[{usluga.name}]}</div>
+                                            <div class="col-1 pb-2">
+                                                <input type="text"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.listUsluga[$index].kol_usl">
+                                            </div>
+                                            <div class="col-1 pb-2 ">
+                                                <button type="button"
+                                                        class="btn btn-outline-danger btn-block"
+                                                        data-ng-click="talonAmbCtr.popServiseTarif($index)">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>            
+                                                </button>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+                                <div class="row pt-4">
+                                    <div class="col-2 text-right">
+                                        <button type="button"
+                                                class="btn btn-block btn-warning"
+                                                data-ng-click="talonAmbCtr.saveTalons()"
+                                                data-ng-disabled="!talonAmb_Form.$valid">
+                                                    Сохранить
+                                        </button>
+                                    </div>
+                                    <div class="col-8 text-right">
+                                        
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <button type="button"
+                                                class="btn btn-block btn-outline-secondary"
+                                                data-ng-click="talonAmbCtr.emptyTalonModel()">
+                                                    Очистить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Поля амбулаторного талона (базовый) -->
+
+                            <!-- Список талонов -->
+                             <div class="tab-pane fade" id="talonBase200">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <button type="button" 
+                                                class="btn btn-block btn-outline-danger text-center"
+                                                data-ng-click="talonAmbCtr.deleteTalons()">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                   <div class="col-2">
+                                       <input type="text" 
+                                              name="patientName"
+                                              class="form-control"
+                                              placeholder="Идент Пациента" 
+                                              data-ng-model="talonAmbCtr.filters.patientID">
+                                   </div>
+                                   <div class="col-2">
+                                       <input type="text" 
+                                              name="patientName"
+                                              class="form-control"
+                                              placeholder="ФИО Пациента"
+                                              data-ng-model="talonAmbCtr.filters.patientName">
+                                   </div>
+                                   <div class="col-2">
+                                       <input type="text" 
+                                              name="patientName"
+                                              class="form-control"
+                                              placeholder="Дата"
+                                              data-ng-model="talonAmbCtr.filters.talonDate">
+                                   </div>
+                                   <div class="col-3">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="uploadTalons" required>
+                                            <label class="custom-file-label" for="uploadTalons">Загрузить DBF</label>
+                                        </div>
+                                   </div>
+                                   <div class="col-1 text-right">
+                                        <button type="button" 
+                                                class="btn btn-block btn-primary text-center"
+                                                data-ng-click="talonAmbCtr.uploadTalons()">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-1 text-right">
+                                        <button type="button" 
+                                                class="btn btn-block btn-primary text-center"
+                                                data-ng-click="talonAmbCtr.readTalons()">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 pt-2 pb-1">
+                                        <div><hr></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        
+                                        <div class="row py-2 border-bottom" 
+                                             data-ng-repeat="talon in talonAmbCtr.talons">
+                                            <div class="col-1 text-center">
+                                                <input type="checkbox"
+                                                       data-ng-model="x"
+                                                       data-ng-change="talonAmbCtr.selectTalonId(talon.id)">
+                                            </div>
+                                            <div class="col-3">
+                                                {[{talon.objPatient.idbars}]}
+                                            </div>
+                                            <div class="col-5">
+                                                <a href="#"
+                                                   data-ng-click="talonAmbCtr.toTalonEditor(talon.id)">
+                                                   {[{talon.objPatient.fam}]} {[{talon.objPatient.im}]} {[{talon.objPatient.ot}]}
+                                                </a>
+                                            </div>
+                                            <div class="col-2">{[{talon.date_2}]}</div>
+                                            <div class="col-1">5</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <!-- Список талонов -->
+
+                            
+                            
+                            
+                        </div>
+
+
+                    
+                    
+
+
+
+
+                </div>
+            </div>
+            <div class="row py-4">
+                <div class="col-12 py-4"></div>
+            </div>
+
+      </div>
+    </div>
+</div>

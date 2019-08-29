@@ -1,0 +1,68 @@
+body 
+{
+    background: #fafafa;
+    font-family: 'Ubuntu', sans-serif;
+}
+.sm-navtab-grey.nav-link.active
+{
+	background-color: #fafafa;
+	border-bottom-color: #fafafa;
+}
+
+.alert-grey
+{
+	color: #383d41;
+	border-color: #dee2e6;
+    background-color: #F5F5F5;
+}
+*[data-ng-model], input.ng-dirty
+{
+	background: #9e9e9e29;
+    border: 1px solid #9E9E9E;
+}
+input.ng-touched.ng-dirty.ng-valid
+{
+    background: #4caf5014;
+    border: 1px solid #4CAF50;
+}
+input.ng-touched.ng-dirty.ng-invalid, .ng-empty.ng-invalid
+{
+    background: #ff57221c;
+    border: 1px solid #FF5722;
+}
+.form-control:disabled
+{
+    background-color: #e0e0e033;
+    border: 1px solid #E0E0E0;
+}
+
+.modal-xl
+{
+    max-width: 1200px;
+}
+
+.custom-file-label::after
+{
+    content: 'Выбрать';
+}
+
+*[data-ng-model*="idcase"],   *[data-ng-model*="usl_ok"],   *[data-ng-model*="vidpom"], *[data-ng-model*="for_pom"], 
+*[data-ng-model*="npr_mo"],   *[data-ng-model*="npr_date"], *[data-ng-model*="lpu"], 
+*[data-ng-model*="date_z_1"], *[data-ng-model*="date_z_2"], *[data-ng-model*="kd_z"],   *[data-ng-model*="vnov_m"],
+*[data-ng-model*="rslt"],     *[data-ng-model*="ishod"], *[data-ng-model*="os_sluch"],   *[data-ng-model*="vb_p"],
+*[data-ng-model*="idsp"],     *[data-ng-model*="sumv"], *[data-ng-model*="oplata"],   *[data-ng-model*="sump"],
+*[data-ng-model*="sankit"]
+{
+    /*border-color: #ffc107;
+    background: #ffc1072b;*/
+}
+
+.talon-list-talon:active {
+    border: 1px solid #007bff;
+    background: rgba(0, 123, 255, 0.07);
+}
+
+.talon-list-talon-active {
+    border: 1px solid #007bff;
+    background: rgba(0, 123, 255, 0.07);
+}
