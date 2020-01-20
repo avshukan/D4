@@ -8,7 +8,7 @@
 
     function CheckModelFactory(){
         const checkModel = {
-            "code": "0",
+            "code": '' + Math.random().toString().slice(2, 10),
             "code_mo": "0",
             "year": "0",
             "month": "0",

@@ -87,7 +87,7 @@ function getDate(strDate) {
 function filterRefBook(req, res, next) {
     if (req.query.date_z_2) {
         // Заглушка!!! Выдаем справочники на 01.01.2019
-        req.query.date_z_2 = "01.01.2019";
+        req.query.date_z_2 = "01.01.2020";
 
         const refBooks = [];
         res.resData.forEach((refBook, index) => {
