@@ -78,9 +78,12 @@ function getRecordsSumm(req, res, next) {
 }
 
 function readChecks(req, res, next) {
-    req.db.collection('checks').find({
+    req.db.collection('checks')
+    .find({
         code_mo: req.cookies.lpu
-    }).toArray((err, checks) => {
+    })
+    .sort({_id: -1})
+    .toArray((err, checks) => {
         if (checks) {
             res.resData = checks;
         }
