@@ -9,10 +9,11 @@
             'CheckModelFactory',
             'TalonAmbModelFactory',
             'CheckRecords',
+            'FlkFactory',
             TalonAmbController
         ]);
 
-    function TalonAmbController($cookies, ApiFactory, NsiFactory, CheckModelFactory, TalonAmbModelFactory, CheckRecords) {
+    function TalonAmbController($cookies, ApiFactory, NsiFactory, CheckModelFactory, TalonAmbModelFactory, CheckRecords, FlkFactory) {
         const vm = this;
 
 
@@ -39,6 +40,7 @@
         vm.records = [];
         vm.doctors = [];
         vm.refBooks = {};
+        vm.flkErrors = [];
         vm.nsi = NsiFactory;
         vm.lpu = $cookies.get('lpu');
         vm.selectedTalonsId = [];
@@ -87,6 +89,7 @@
         vm.calcUslTarif = calcUslTarif;
         vm.setPacientId = setPacientId;
         vm.selectDoctor = selectDoctor;
+        vm.runFlkFactory = runFlkFactory;
         vm.calcCheckSumm = calcCheckSumm;
         vm.toTalonEditor = toTalonEditor;
         vm.selectTalonId = selectTalonId;
@@ -1520,6 +1523,11 @@
                 $('a[href~="#critEditor_Tab_Editor"]').tab('show');
             }
 
+        }
+
+        function runFlkFactory() {
+            vm.flkErrors = [];
+            vm.flkErrors = FlkFactory.run(vm.talonEditorModel);
         }
 
 

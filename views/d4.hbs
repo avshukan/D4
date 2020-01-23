@@ -3818,6 +3818,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row" data-ng-repeat="error in talonAmbCtr.flkErrors">
+                                <div class="col-12"  data-ng-if="error.status">
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Ошибка! - {[{error.code}]}</strong>&nbsp;
+                                        <p>{[{error.text}]}</p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row pt-3">
                                 <div class="col-2 text-right">
                                     <button type="button"
@@ -3839,7 +3849,15 @@
                                     </a>
                                     
                                 </div>
-                                <div class="col-6"></div>
+                                <div class="col-4"></div>
+                                <div class="col-2 text-right">
+                                    <button type="button"
+                                            class="btn btn-block btn-warning"
+                                            data-ng-click="talonAmbCtr.runFlkFactory()">
+                                            <span>Проверка ФЛК</span>
+                                        
+                                    </button>
+                                </div>
                                 <div class="col-2 text-right">
                                     <button type="button"
                                             class="btn btn-block btn-warning"
