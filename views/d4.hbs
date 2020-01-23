@@ -2465,13 +2465,19 @@
                                 </div>
                             </div>
                             <div class="row pt-2">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label class="col-12 px-0 m-0 text-truncate">Сумма счета, выставленная МО на оплату</label>
                                     <input type="text"
                                            class="form-control"
                                            placeholder="5000.00" 
                                            data-ng-pattern="/^\d{1,100}\.\d{2}$/"
                                            data-ng-model="talonAmbCtr.checkEditorModel.summav">
+                                </div>
+                                <div class="col-6">
+                                    <label class="col-12 px-0 m-0 text-truncate">Плательщик. Реестровый номер СМО</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           data-ng-model="talonAmbCtr.checkEditorModel.plat">
                                 </div>
                             </div>
                             <!-- <div class="row pt-2">
@@ -2783,22 +2789,34 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <label class="col-12 px-0 m-0 text-truncate"><span class="badge badge-dark">11</span>
-                                            &nbsp;&nbsp;Страховая компания (Код)
-                                        </label>
-                                        <div class="input-group">
-                                            <input type="text"
-                                               name="patientName"
-                                               class="form-control"
-                                               placeholder="65001" 
-                                               data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.smo">
-                                            <div class="input-group-append">
-                                                <button type="button"
-                                                        data-ng-click="talonAmbCtr.getSMOIdDefault()"
-                                                        class="btn btn-primary">СогазМЕД</button>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="col-12 px-0 m-0 text-truncate"><span class="badge badge-dark">11</span>
+                                                    &nbsp;&nbsp;Реестровый номер СМО
+                                                </label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                    name="patientSMO"
+                                                    class="form-control"
+                                                    data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.smo">
+                                                    <div class="input-group-append">
+                                                        <button type="button"
+                                                                data-ng-click="talonAmbCtr.getSMOIdDefault()"
+                                                                class="btn btn-primary">СогазМЕД</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <label class="col-12 px-0 m-0 text-truncate">
+                                                    &nbsp;&nbsp;Наименование СМО
+                                                </label>
+                                                <input type="text"
+                                                       name="patientSMO_NAM"
+                                                       class="form-control"
+                                                       data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.smo_nam">
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <div class="col-3">
                                         <label class="col-12 px-0 m-0 text-truncate">Документ, подтвержд. факт страхования</label>
@@ -2836,7 +2854,42 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="row pt-3">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label class="col-12 px-0 m-0 text-truncate">
+                                                    &nbsp;&nbsp;ОКАТО терр-ии страхования
+                                                </label>
+                                                <input type="text"
+                                                    name="patientSMO_OK"
+                                                    class="form-control"
+                                                    data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.smo_ok">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="col-12 px-0 m-0 text-truncate">
+                                                    &nbsp;&nbsp;ОГРН СМО
+                                                </label>
+                                                <input type="text"
+                                                    name="patientSMO_OGRN"
+                                                    class="form-control"
+                                                    data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.smo_ogrn">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label>Назначение на МСЭ</label>
+                                                <select class="form-control"
+                                                        data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.mse">
+                                                    <option data-ng-value=null>Нет</option>
+                                                    <option data-ng-value="'1'">Да</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 <div class="row pt-3">
                                     <div class="col-3">

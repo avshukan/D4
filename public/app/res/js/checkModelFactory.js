@@ -14,7 +14,7 @@
             "month": "0",
             "nschet": "0",
             "dschet": "",
-            "plat": null,
+            "plat": "65001",
             "summav": "0.00",
             "coments": null,
             "summap": null,
