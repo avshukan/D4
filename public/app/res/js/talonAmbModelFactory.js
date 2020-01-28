@@ -134,6 +134,8 @@
                         "doctype": null,
                         "docser": null,
                         "docnum": null,
+                        "docdate": null,
+                        "docorg": null,
                         "snils": null,
                         "okatog": null,
                         "okatop": null,

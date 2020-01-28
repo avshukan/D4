@@ -2705,9 +2705,7 @@
                                                     <i class="fa fa-fw fa-search" aria-hidden="true"></i>
                                                 </button>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                                 <div class="row pb-3">
@@ -2785,6 +2783,29 @@
                                                        data-ng-model="talonAmbCtr.talonEditorModel._pacient.docnum">
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row pb-3">
+                                    <div class="col-6"></div>
+                                    <div class="col-3">
+                                        <label class="col-12 px-0 m-0 text-truncate">
+                                            &nbsp;&nbsp;Дата выдачи документа, удостоверяющего личность пациента или представителя
+                                        </label>
+                                        <input type="text"
+                                                name="persDOCDATE"
+                                                class="form-control"
+                                                placeholder="ДД.ММ.ГГГГ"
+                                                data-ng-pattern="/^\d{2}\.\d{2}\.\d{4}$/"
+                                                data-ng-model="talonAmbCtr.talonEditorModel._pacient.docdate">
+                                    </div>
+                                    <div class="col-3">
+                                        <label class="col-12 px-0 m-0 text-truncate">
+                                            &nbsp;&nbsp;Наименование органа, выдавшего документ, удостоверяющий личность
+                                        </label>
+                                        <input type="text"
+                                                name="persDOCORG"
+                                                class="form-control"
+                                                data-ng-model="talonAmbCtr.talonEditorModel._pacient.docorg">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -2887,6 +2908,24 @@
                                                     <option data-ng-value="'1'">Да</option>
                                                 </select>
                                             </div>
+                                            <div class="col-6">
+                                                <label class="col-12 px-0 m-0 text-truncate"><span class="badge badge-dark">10</span>&nbsp;&nbsp;Инвалидность</label>
+                                                <div class="input-group">
+                                                    <input type="text"
+                                                        name="patientName"
+                                                        placeholder="Код"
+                                                        class="form-control col-2 text-center"
+                                                        data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.inv">
+                                                    <select class="form-control"
+                                                            data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.inv">
+                                                        <option data-ng-value=null>Нет</option>
+                                                        <option data-ng-value="inv.id"
+                                                                data-ng-repeat="inv in talonAmbCtr.nsi.inv.list">
+                                                            {[{inv.name}]}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -2923,24 +2962,7 @@
                                                data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.z_sl.vnov_m"
                                                title="Продолжительность госпитализации (койко-дни/пациенто-дни)">
                                     </div> -->
-                                    <div class="col-6">
-                                        <label class="col-12 px-0 m-0 text-truncate"><span class="badge badge-dark">10</span>&nbsp;&nbsp;Инвалидность</label>
-                                        <div class="input-group">
-                                            <input type="text"
-                                                   name="patientName"
-                                                   placeholder="Код"
-                                                   class="form-control col-2 text-center"
-                                                   data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.inv">
-                                            <select class="form-control"
-                                                    data-ng-model="talonAmbCtr.talonEditorModel.zl_list.zap.pacient.inv">
-                                                <option data-ng-value=null>Нет</option>
-                                                <option data-ng-value="inv.id"
-                                                        data-ng-repeat="inv in talonAmbCtr.nsi.inv.list">
-                                                    {[{inv.name}]}
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="row pt-4">
                                     <div class="col-12">
