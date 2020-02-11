@@ -399,7 +399,7 @@
 
         function getSMOIdDefault() {
             vm.talonEditorModel.zl_list.zap.pacient.smo = '65001';
-            vm.talonEditorModel.zl_list.zap.pacient.smo_nam = '65001';
+            vm.talonEditorModel.zl_list.zap.pacient.smo_nam = '65000';
             vm.talonEditorModel.zl_list.zap.pacient.smo_ok = '64000';
             vm.talonEditorModel.zl_list.zap.pacient.smo_ogrn = '1027739008440';
         }

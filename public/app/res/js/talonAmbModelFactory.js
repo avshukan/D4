@@ -86,7 +86,7 @@
                                 "smo": "65001",
                                 "smo_ogrn": "1027739008440",
                                 "smo_ok": "64000",
-                                "smo_nam": "65001",
+                                "smo_nam": "65000",
                                 "inv": null,
                                 "mse": null,
                                 "novor": "0",
