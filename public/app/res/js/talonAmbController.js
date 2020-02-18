@@ -577,7 +577,7 @@
                     vm.talonEditorModel._pacient.docser = vm.patientEditorModel.docser;
                     vm.talonEditorModel._pacient.docnum = vm.patientEditorModel.docnum;
                     vm.talonEditorModel._pacient.doctype = vm.patientEditorModel.doctype;
-                    vm.talonEditorModel.zl_list.zap.pacient.smo_nam = vm.patientEditorModel.restrah;
+                    // vm.talonEditorModel.zl_list.zap.pacient.smo_nam = vm.patientEditorModel.restrah;
                     // vm.talonEditorModel.zl_list.zap.pacient.inv = vm.patientEditorModel.inv;
                     vm.talonEditorModel.zl_list.zap.pacient.vpolis = vm.patientEditorModel.vpolis;
                     vm.talonEditorModel.zl_list.zap.pacient.spolis = vm.patientEditorModel.spolis;
