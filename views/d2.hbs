@@ -1068,10 +1068,13 @@
                                <div class="col-4">
                                    <label class="col-12 px-0 m-0 text-truncate">Тип услуги</label>
                                     <select class="form-control"
-                                            title="N017 Классификатор типов лучевой терапии (OnkLuch)" 
                                             data-ng-model="talonAmbCtr.onkoServiceEditorModel.usl_tip">
-                                        <option value="1">Первичной опухоли / ложа опухоли</option>
-                                        <option value="2">Метастазов</option>
+                                        <option value="1">Хирургическое лечение</option>
+                                        <option value="2">Лекарственная противоопухолевая терапия</option>
+                                        <option value="3">Лучевая терапия</option>
+                                        <option value="4">Химиолучевая терапия</option>
+                                        <option value="5">Неспецифическое лечение (осложнения противоопухолевой терапии, установка/замена порт системы (катетера), прочее)</option>
+                                        <option value="6">Диагностика</option>
                                     </select>
                                </div>
                                <div class="col-4">
@@ -1116,13 +1119,8 @@
                                    <label class="col-12 px-0 m-0 text-truncate">Тип лучевой терапии</label>
                                     <select class="form-control"
                                             data-ng-model="talonAmbCtr.onkoServiceEditorModel.luch_tip">
-                                        <option value="0">Первичное лечение (лечение пациента за исключением прогрессирования и рецидива)</option>
-                                        <option value="1">Лечение при рецидиве</option>
-                                        <option value="2">Лечение при прогрессировании</option>
-                                        <option value="3">Динамическое наблюдение</option>
-                                        <option value="4">Диспансерное наблюдение (здоров/ремиссия)</option>
-                                        <option value="5">Диагностика (при отсутствии специфического лечения)</option>
-                                        <option value="6">Симптоматическое лечение</option>
+                                        <option value="1">Первичной опухоли / ложа опухоли</option>
+                                        <option value="2">Метастазов</option>
                                     </select>
                                </div>
                                <div class="col-4">
