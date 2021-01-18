@@ -1374,7 +1374,7 @@
         vm.ksgEditorModel = JSON.parse(angular.toJson(
             Object.assign({}, {
                 "n_ksg": null,
-                "ver_ksg": "2020",
+                "ver_ksg": "2021",
                 "ksg_pg": "0",
                 "n_kpg": null,
                 "koef_z": "00.000",
@@ -1393,7 +1393,7 @@
                 vm.ksgEditorModel = JSON.parse(angular.toJson(
                     Object.assign({}, {
                         "n_ksg": null,
-                        "ver_ksg": "2020",
+                        "ver_ksg": "2021",
                         "ksg_pg": "0",
                         "n_kpg": null,
                         "koef_z": "00.000",
