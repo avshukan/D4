@@ -20,7 +20,7 @@ const d2Router = require('./routes/d2'),
       refbooksRouter = require('./routes/refbooks'),
       patientsRouter = require('./routes/patients'),
       recordsRouter = require('./routes/records');
-      
+      excelExportOodStatRouter = require('./routes/excel-export-ood-stat.js');      
 
 var app = express();
 
@@ -50,7 +50,7 @@ app.use('/doctors', doctorsRouter);
 app.use('/refbooks', refbooksRouter);
 app.use('/patients', patientsRouter);
 app.use('/records', recordsRouter);
-
+app.use('/excel-export-ood-stat', excelExportOodStatRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

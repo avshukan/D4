@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module('RegPortal', ['ngCookies'])
-        .constant('API_URL', 'http://10.6.0.159')
+        .constant('API_URL', `http://${window.location.hostname}`) 
 		.config(function($interpolateProvider) {
 		  $interpolateProvider.startSymbol('{[{');
 		  $interpolateProvider.endSymbol('}]}');
