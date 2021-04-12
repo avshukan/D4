@@ -50,8 +50,8 @@ async function createExcel(req, res, next) {
       rec._pacient.snils,
       rec.zl_list.zap.pacient.npolis,
       rec.zl_list.zap.z_sl.sl[0].ds1,
-      rec.zl_list.zap.z_sl.sl[0].ksg_kpg.n_ksg,
-      rec.zl_list.zap.z_sl.sl[0].ksg_kpg.crit[0]?.crit,
+      rec.zl_list.zap.z_sl.sl[0]?.ksg_kpg?.n_ksg,
+      rec.zl_list.zap.z_sl.sl[0]?.ksg_kpg?.crit[0]?.crit,
       rec.zl_list.zap.pacient.smo,
     ]) 
   })
