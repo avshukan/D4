@@ -17,13 +17,11 @@ function insertResData(req, res, next) {
 }
 
 function send(req, res, next) {
-    console.log(req.dbf, res.resData);
     res.send(res.resData);
 }
 
 function readPatients(req, res, next) {
     req.dbf.collection('Dbf2Base_patientinfo').find({}).toArray((err, patients) => {
-        console.log(err, patients);
         if (patients) {
             res.resData = patients;
         }

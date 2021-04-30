@@ -51,9 +51,6 @@
         vm.selectedServiceTarif = null;
         vm.consiliumEditorModel = {};
 
-
-        console.log($cookies.get('lpu'));
-
         vm.init = init;
         vm.addSL = addSL;
         vm.getKD = getKD;
@@ -500,7 +497,6 @@
                     })
 
                     const name = (_name) ? _name.MPACNAME : 'Нет';
-                    console.log(_name.MPACNAME);
                     V019.MPACNAME = name;
                     return V019;
                 });
@@ -592,7 +588,6 @@
             }
             
             vm.apiPatient.readOne(id, 'patientEditorModel', (res) => {
-                // console.log(res);
                 if (res.length > 0) {
                     vm.talonEditorModel._pacient.w = vm.patientEditorModel.w;
                     vm.talonEditorModel._pacient.dr = vm.patientEditorModel.dr;
@@ -1296,15 +1291,11 @@
                 if (vm.uslEditorModel._id == undefined) {
                     const lenght = vm.talonEditorModel.zl_list.zap.z_sl.sl[vm.slIndex].usl.length;
                     vm.uslEditorModel._id = lenght;
-                    console.log(vm.slIndex, vm.talonEditorModel.zl_list.zap.z_sl.sl[vm.slIndex].usl, JSON.parse(angular.toJson(Object.assign({}, vm.uslEditorModel))));
                     vm.talonEditorModel.zl_list.zap.z_sl.sl[vm.slIndex].usl.push(
                         JSON.parse(angular.toJson(Object.assign({}, vm.uslEditorModel)))
                     );
                     this.new();
-                    //this.toEditor(length);
                 }
-
-                
             },
 
             toEditor: function(_id) {

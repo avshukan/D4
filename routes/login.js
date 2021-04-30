@@ -7,7 +7,6 @@ router.get('/', insertSessionData, checkActiveSession, render);
 router.post('/', insertSessionData, checkUser, createHash, saveHash, setActiveSession, redirectActiveSession, render);
 
 function render(req, res, next) {
-    console.log('User IP ---- > ', req.ip);
     res.render('login', res.sessionData);
 }
 
@@ -63,7 +62,6 @@ function createHash(req, res, next) {
 
 function setActiveSession(req, res, next) {
     if (res.sessionData.user && res.sessionData.hash) {
-        console.log(res.sessionData);
         res.cookie('hash', md5(res.sessionData.hash), { maxAge: 32400000 });
         res.cookie('user', res.sessionData.user.name, { maxAge: 32400000 });
         res.cookie('lpu', res.sessionData.user.orgCode, { maxAge: 32400000 });

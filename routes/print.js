@@ -38,11 +38,6 @@ function getCheck(req, res, next) {
 }
 
 function createExcel(req, res, next) {
-    console.log('---------------->>>', {
-            name: '', 
-            code: (req.cookies) ? req.cookies.lpu : ''
-        });
-
     res.renderData.excelTable = getExcelTable(
         getHeader(res.renderData.check, {
             name: '', 

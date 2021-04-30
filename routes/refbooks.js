@@ -130,7 +130,6 @@ function filterRefBook(req, res, next) {
 
 function readUsls(req, res, next) {
     const lpuCode = `LPU${req.query.lpu}`;
-    console.log(lpuCode);
     req.ref.collection('USL_LPU').find({
         [lpuCode]: {$ne: ''}
     }).toArray((err, usls) => {
@@ -159,9 +158,14 @@ function addTarifPrice(req, res, next) {
     req.ref.collection('USL_TARIF').find().toArray((err, tarifs) => {
         if (tarifs) {
             res.resData = res.resData.map((usl) => {
-                usl.tarif.price = tarifs.filter((tarif) => {
+                const tarif = tarifs.find((tarif) => {
                     return tarif.num == usl.tarif.code;
-                }).pop().tarif;
+                });
+                
+                if (typeof tarif !== 'undefined') {
+                  usl.tarif.price = tarif.tarif;
+                }
+
                 return usl;
             });
         }
@@ -174,7 +178,6 @@ function addUslName(req, res, next) {
     req.ref.collection('USL_REG').find({
         uslCode: {$in: uslCodes}
     }).toArray((err, uslRegs) => {
-        console.log(err, uslRegs);
         if (uslRegs) {
             res.resData = res.resData.map((usl) => {
                 const _usl = uslRegs.filter((uslReg) => {

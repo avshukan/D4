@@ -1,6 +1,6 @@
 const db = 'tfoms';
 const conf = { useNewUrlParser: true };
-const host = 'mongodb://localhost:27017/';
+const host = 'mongodb://10.6.0.159:27017/';
 const client = require('mongodb').MongoClient;
 
 function connection(req, res, next) {

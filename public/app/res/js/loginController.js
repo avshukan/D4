@@ -21,7 +21,6 @@
 
         function checkUserLogin()
         {
-            console.log(vm.loginModel.user, vm.loginModel.pass);
             if (vm.loginModel.user == 'test' && vm.loginModel.pass == 'test') {
                 vm.user = {
                     name: 'Шурыгина Татьяна Николаевна',

@@ -5,7 +5,7 @@ const client = require('mongodb').MongoClient;
 
 function connection(req, res, next) {
     client.connect(host, conf, (err, connect) => {
-    	console.log('----------------------->', err, connect);
+    	if (err) { throw err };
         req.ref = connect.db(db);
         next();
     })

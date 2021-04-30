@@ -147,7 +147,6 @@
 
                 count++;
                 if (count > 30) { 
-                     console.log('Error');
                     return;
                 }
             }

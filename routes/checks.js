@@ -24,13 +24,11 @@ function getRecordsCount(req, res, next) {
         return req.db.collection('records').find({
             'zl_list.schet._id': check._id
         }).count().then((count) => {
-            console.log('---(',count);
             check.records = count;
             return check;
         });
     });
     Promise.all(res.resData).then((result) => {
-        console.log('----> ', result);
         next();
     });
 }
@@ -52,7 +50,7 @@ function calcCheckSumm(req, res, next) {
                 $set: {summav: totalSumm.toFixed(2)}
             }, 
             (err, doc) => {
-                console.log(err, doc);
+                if (err) { throw err };
                 next();
             }
         );
@@ -67,11 +65,9 @@ function getRecordsSumm(req, res, next) {
         if (records) {
             res.resData.recordsSumm = [];
             records.forEach((record, index) => {
-                console.log('=====================>>>  ${index}', record._id,  record.zl_list.zap.z_sl.sumv);
                 res.resData.recordsSumm.push(record.zl_list.zap.z_sl.sumv);
             });
         }
-        console.log('------------------------->>', res.resData.recordsSumm);
         next();
     });
 
@@ -131,7 +127,7 @@ function updateCheck(req, res, next) {
             $set: req.body
         }, 
         (err, doc) => {
-            console.log(err, doc);
+            if (err) { throw err };
             next();
         }
     );
