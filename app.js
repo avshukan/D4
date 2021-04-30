@@ -16,6 +16,7 @@ const d2Router = require('./routes/d2'),
       printRouter = require('./routes/print'),
       logoutRouter = require('./routes/logout'),
       checksRouter = require('./routes/checks'),
+      addDoctorRouter = require('./routes/add-doctor'),
       doctorsRouter = require('./routes/doctors'),
       refbooksRouter = require('./routes/refbooks'),
       patientsRouter = require('./routes/patients'),
@@ -47,6 +48,7 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/checks', checksRouter);
 app.use('/doctors', doctorsRouter);
+app.use('/add-doctor', addDoctorRouter);
 app.use('/refbooks', refbooksRouter);
 app.use('/patients', patientsRouter);
 app.use('/records', recordsRouter);
