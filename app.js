@@ -29,7 +29,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+app.use(logger(':remote-addr - :remote-user  [:date[iso]]  :method  :status  :res[content-length]  HTTP/:http-version  :url  :referrer'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
