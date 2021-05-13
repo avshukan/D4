@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser'),
       logger = require('morgan'),
       path = require('path');
 
-const mongodb = require('./api/db/mongodb'),
+const mongodb = require('./api/db/mongodb.js')
       sessionCheck = require('./api/session/check');
 
 const d2Router = require('./routes/d2'),
@@ -36,7 +36,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(insert.renderData);
-app.use(mongodb);       // Подключаем базу данных
+if (process.env.NODE_TYPE === 'main') {
+  app.use(mongodb('mongodb://10.6.0.159:27017/tfoms', 'db', { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 100 }));       // Подключаем базу данных
+}
+if (process.env.NODE_TYPE === 'refbook') {
+  app.use(mongodb('mongodb://10.6.0.159:27017/refbook', 'ref', { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 100 }));       // Подключаем базу данных
+}
+if (process.env.NODE_TYPE === 'patients') {
+  app.use(mongodb('mongodb://10.6.0.159:27017/patients_dbf', 'dbf', { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 100 }));       // Подключаем базу данных
+}
 app.use(sessionCheck);  // Проверяем наличие сессии у пользователя
 
 app.use('/', indexRouter);

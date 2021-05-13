@@ -5,7 +5,7 @@ const ObjectId = require('mongodb').ObjectId,
       md5 = require('md5');
 
 
-router.use(mongodbDBF);
+// router.use(mongodbDBF);
 
 router.get('/', insertResData, readPatients, send);
 router.get('/:patientId', insertResData, readPatient, send);

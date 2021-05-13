@@ -1,5 +1,5 @@
 const db = 'patients_dbf';
-const conf = { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 10 };
+const conf = { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 100 };
 const host = 'mongodb://10.6.0.159:27017/';
 const client = require('mongodb').MongoClient;
 

@@ -1,13 +1,16 @@
-const db = 'tfoms';
-const conf = { useNewUrlParser: true, useUnifiedTopology: true, maxPoolSize: 10 };
-const host = 'mongodb://10.6.0.159:27017/';
-const client = require('mongodb').MongoClient;
+const { MongoClient } = require('mongodb');
+let client = {} 
 
-function connection(req, res, next) {
-    client.connect(host, conf, (err, connect) => {
-        req.db = connect.db(db);
-        next();
-    })
-}
-
-module.exports = connection;
+module.exports = function(uri, prop, opts) {
+  return async function createMongodbConnection(req, res, next) {
+//    console.log(process.env.NODE_TYPE, client, new Date())
+    if (typeof client[prop] === 'undefined') {
+      // Создаем новый пул подключений
+      client[prop] = await MongoClient.connect(uri, opts)
+      console.log(`Create connection pool for ${uri} - Prop: ${prop} Client: ${client} ${process.env.NODE_TYPE} PORT: ${process.env.PORT}`)
+      console.dir(client)
+    }
+    req[prop] = client[prop].db()
+    next()
+  }
+} 
