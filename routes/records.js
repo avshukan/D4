@@ -4,13 +4,11 @@ const ObjectId = require('mongodb').ObjectId,
       router = express.Router(),
       md5 = require('md5');
 
-router.get('/', insertResData, readRecords, send);
-
 router.get('/nhistory', insertResData, readNhistoryRecords, prepareNhistoryRecords, updateNhistoryRecords, send);
 
 router.get('/check/:checkId', insertResData, readCheckRecords, send);
 router.get('/:recordId', insertResData, readRecord, send);
-router.get('/clone/:recordId', insertResData, cloneRecord, readRecords, send);
+router.get('/clone/:recordId', insertResData, cloneRecord, send);
 router.get('/xml/:recordId', insertResData, readRecord, createXml, sendXml);
 
 router.post('/', insertResData, createRecord, readCheckRecords, send);
@@ -99,17 +97,6 @@ function readCheckRecords(req, res, next) {
     }).toArray((err, records) => {
         if (records) {
             res.resData = records.reverse();
-        }
-        next();
-    });
-}
-
-function readRecords(req, res, next) {
-    req.db.collection('records').find({
-
-    }).toArray((err, records) => {
-        if (records) {
-            res.resData = records;
         }
         next();
     });
