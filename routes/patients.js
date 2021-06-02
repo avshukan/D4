@@ -8,7 +8,7 @@ router.get('/', insertResData, send);
 router.get('/:patientId', insertResData, readPatient, send);
 
 function insertResData(req, res, next) {
-    res.resData = {};
+    res.resData = [];
     next();
 }
 
