@@ -4,12 +4,8 @@ const ObjectId = require('mongodb').ObjectId,
       router = express.Router(),
       md5 = require('md5');
 
-
-// router.use(mongodbDBF);
-
-router.get('/', insertResData, readPatients, send);
+router.get('/', insertResData, send);
 router.get('/:patientId', insertResData, readPatient, send);
-
 
 function insertResData(req, res, next) {
     res.resData = {};
@@ -18,15 +14,6 @@ function insertResData(req, res, next) {
 
 function send(req, res, next) {
     res.send(res.resData);
-}
-
-function readPatients(req, res, next) {
-    req.dbf.collection('Dbf2Base_patientinfo').find({}).toArray((err, patients) => {
-        if (patients) {
-            res.resData = patients;
-        }
-        next();
-    });
 }
 
 function readPatient(req, res, next) {
