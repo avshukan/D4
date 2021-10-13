@@ -443,10 +443,12 @@
             let diff = 0
 
             if (vm.talonEditorModel.zl_list.zap.z_sl.usl_ok == '1') {
-                diff = Math.abs(getDate(date_1).getDate() - getDate(date_2).getDate());
+                diff = Math.abs(Math.floor(( getDate(date_1).getTime() - getDate(date_2).getTime() ) /(1000 * 60 * 60 * 24)));
+                // diff = Math.abs(getDate(date_1).getDate() - getDate(date_2).getDate());
             }
             if (vm.talonEditorModel.zl_list.zap.z_sl.usl_ok == '2') {
-                diff = (Math.abs(getDate(date_1).getDate() - getDate(date_2).getDate())) + 1;
+                diff = (Math.abs(Math.floor(( getDate(date_1).getTime() - getDate(date_2).getTime() ) /(1000 * 60 * 60 * 24)))) + 1;
+                // diff = (Math.abs(getDate(date_1).getDate() - getDate(date_2).getDate())) + 1;
             }
             vm.talonEditorModel.zl_list.zap.z_sl.kd_z = diff;
 
