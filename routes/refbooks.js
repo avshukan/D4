@@ -87,7 +87,7 @@ function getDate(strDate) {
 function filterRefBook(req, res, next) {
     if (req.query.date_z_2) {
         // Заглушка!!! Выдаем справочники на 01.01.2019
-        req.query.date_z_2 = "01.01.2021";
+        req.query.date_z_2 = "01.01.2022";
 
         const refBooks = [];
         res.resData.forEach((refBook, index) => {
@@ -103,13 +103,13 @@ function filterRefBook(req, res, next) {
                 if (getDate(req.query.date_z_2) >= getDate(refBook.DATEBEG)) {
                     refBooks.push(refBook);
                 }
-            } 
+            }
 
             if (refBook.DATEBEG.length == 0 && refBook.DATEEND.length != 0) {
                 if (getDate(req.query.date_z_2) <= getDate(refBook.DATEEND)) {
                     refBooks.push(refBook);
                 }
-            } 
+            }
 
             if (refBook.DATEBEG.length != 0 && refBook.DATEEND.length != 0) {
                 if (getDate(req.query.date_z_2) >= getDate(refBook.DATEBEG) && getDate(req.query.date_z_2) <= getDate(refBook.DATEEND)) {
@@ -125,7 +125,7 @@ function filterRefBook(req, res, next) {
     } else {
         next();
     }
-    
+
 }
 
 function readUsls(req, res, next) {
@@ -161,7 +161,7 @@ function addTarifPrice(req, res, next) {
                 const tarif = tarifs.find((tarif) => {
                     return tarif.num == usl.tarif.code;
                 });
-                
+
                 if (typeof tarif !== 'undefined') {
                   usl.tarif.price = tarif.tarif;
                 }
